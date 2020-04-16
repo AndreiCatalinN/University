@@ -1,0 +1,125 @@
+/*
+  Not my code
+  http://meyerweb.com/eric/tools/css/reset/
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/*
+Start of my code
+*/
+td{
+	padding-top: 10px;
+}
+
+body{
+	width: 90%;
+  margin: 10px;
+	margin: auto;
+	align: center;
+}
+
+.bg-light{
+	background-color: #e0ebeb;
+}
+
+footer{
+  background: grey;
+  padding: 5px;
+}
+
+#banner{
+	width: 100%;
+}
+
+.book_img{
+	height: 250px;
+	margin: 20px;
+}
+
+.book_img_ext{
+	height: 500px;
+	margin: 20px;
+	margin: auto;
+	align: center;
+}
+
+html{
+	background-color: #e0ebeb;
+}
+.content_wrap{
+  padding: 10px;
+  background: #DCBE87;
+}
+
+/* FOOTER */
+.footer {
+    width: 100%;
+    height: 150px;
+    background-color: black;
+    border-top: 2px solid #4CAF50;
+    color: lightgrey;
+}
+
+#footer_table1 {
+  width: 50%;
+  float:left;
+}
+
+#footer_table2{
+  width: 50%;
+  float:right;
+}
+
+.footer table{
+  margin-left: 2.5%;
+  margin-top: 1.5%;
+}
+
+.footerTable td{
+  width: 250px;
+}
+
+.footerImages{
+  float: right;
+  height: 100px;
+  margin-right: 20%;
+}
+
+.footerImages td{
+  width: 55px;
+}
+
+ h3{
+  margin-top: 20%;
+  margin-left: -10%;
+  font-size: 10px;
+}
+
+.hidden{
+	display: none;
+}
