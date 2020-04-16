@@ -1,0 +1,7 @@
+Engineer,
+Lawyer,
+Doctor,
+Carpenter,
+Nurse,
+Bulibasa, 
+Hefe

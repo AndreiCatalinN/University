@@ -1,0 +1,22 @@
+
+body{
+  font-size: 16px;
+}
+p{
+  font-family: "Arial";
+  text-align: left;
+  text-decoration:line-through;
+  border: 0.03em solid green;
+  width : auto;
+
+}
+h1{
+  font-family: Georgia;
+  font-size: 6.0em;
+  text-align: center;
+
+}
+
+span{
+  color: Green;
+}

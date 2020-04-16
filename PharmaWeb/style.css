@@ -1,0 +1,44 @@
+/*
+for php
+if user already existent
+if user or password is wrong
+if user is correct..
+*/
+
+html{
+  background-color: #dce8e5;
+}
+
+body{
+  max-width: 1200px;
+  width: 80%;
+  /*Centers the page*/
+  margin: 20px auto;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+}
+.colorgr{
+  background-color: #42f4b0;
+  color: black;
+}
+
+.inputwidth{
+  width: 200px;
+}
+
+.inputwidth2{
+  width: 400px;
+}
+
+.spc{
+  margin: 20px ;
+}
+.cen{
+  margin: 50% auto;
+}
+
+#hbutton{
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+}

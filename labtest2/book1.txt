@@ -1,0 +1,1 @@
+1 Don Quixote Miguel de Cervantes 13.992 A Tale of Two Cities Charles Dickens 12.903 The Lord of the Rings J. R. R. Tolkien 20.004 Le Petit Prince Antoine de Saint-Exupery 10.005 Harry Potter and the Philosopher's Stone J. K. Rowling 15.206 The Hobbit J. R. R. Tolkien 14.307 And Then There Were None Agatha Christie 9.908 Alice in Wonderland Lewis Carroll 7.50

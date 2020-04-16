@@ -1,0 +1,70 @@
+
+h1
+{
+  color : Purple;
+}
+
+p
+{
+  color : #ffffff;
+}
+
+body
+{
+  Background: #222222;
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
+}
+
+ul
+{
+  color : #654321;
+}
+/*ID*/
+#special
+{
+  color : #b82bb1;
+}
+/*Class*/
+.cls
+{
+  background-color: Orange;
+}
+
+/*Star selector. selects everything
+*
+{
+  border: 1px solid lightgrey;
+}
+*/
+/*Descendant tag
+All the anchor tags have this color*/
+p a {
+  color: red;
+}
+
+/*
+Adjacent selector
+*/
+
+h4 + ul
+{
+  border: 4px solid red;
+}
+/*
+Attribute selector
+Every anchor tag with href to that
+*/
+a[href = "link to something"]
+{
+  background : yellow;
+}
+
+/*
+nth of type
+*/
+ul:nth-of-type(3)
+{
+
+}
