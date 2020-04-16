@@ -1,0 +1,12 @@
+*/.idea
+*/bin
+*/obj
+*/out
+*/.settings
+*.depend
+*.cbp
+*.layout
+*.tds
+*.obj
+*.exe
+__pycache__
