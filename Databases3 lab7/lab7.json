@@ -1,0 +1,205 @@
+CREATE (e1:Person { name: "Mary", country: "Sweden", age: 29, sport: "Hockey" }),
+(e2:Person { name: "Emily", country: "Ireland", age: 19, sport: "Football" }),
+(e3:Person { name: "Mark", country: "Sweden", age: 23, sport: "Rugby" }),
+(e4:Person { name: "Joe", country: "Sweden", age: 32, sport: "Hockey" }),
+(e5:Person { name: "John", country: "Ireland", age: 31, sport: "Football" }),
+(e6:Person { name: "Peter", country: "France", age: 23, sport: "Rugby" }),
+(e7:Person { name: "Paul", country: "Sweden", age: 25, sport: "Hockey" }),
+(e8:Person { name: "Kevin", country: "Ireland", age: 17, sport: "Football" }),
+(e9:Person { name: "Patrick", country: "Sweden", age: 21, sport: "Rugby" }),
+(e10:Person { name: "Sarah", country: "Ireland", age: 35, sport: "Football" }),
+(e11:Person { name: "Julia", country: "Scotland", age: 28, sport: "Football" }),
+(e12:Person { name: "Hilary", country: "France", age: 24, sport: "Rugby" }),
+(e13:Person { name: "Francis", country: "France", age: 25, sport: "Football" }),
+(e14:Person { name: "Lisa", country: "Scotland", age: 25, sport: "Football" }),
+(e15:Person { name: "Bart", country: "Scotland", age: 25, sport: "Rugby" }),
+(e16:Person { name: "Denis", country: "Scotland", age: 34, sport: "Football" }),
+(e1)-[:FRIEND_OF]->(e2),(e1)-[:FRIEND_OF]->(e3),
+(e1)-[:FRIEND_OF]->(e4),(e1)-[:FRIEND_OF]->(e5),
+(e1)-[:FRIEND_OF]->(e7),(e1)-[:FRIEND_OF]->(e6),
+(e2)-[:FRIEND_OF]->(e13),(e2)-[:FRIEND_OF]->(e3),
+(e2)-[:FRIEND_OF]->(e14),(e2)-[:FRIEND_OF]->(e5),
+(e2)-[:FRIEND_OF]->(e5),(e2)-[:FRIEND_OF]->(e7),
+(e3)-[:FRIEND_OF]->(e10),(e3)-[:FRIEND_OF]->(e4),
+(e3)-[:FRIEND_OF]->(e14),(e3)-[:FRIEND_OF]->(e5),
+(e4)-[:FRIEND_OF]->(e10),(e4)-[:FRIEND_OF]->(e3),
+(e4)-[:FRIEND_OF]->(e11),(e4)-[:FRIEND_OF]->(e5),
+(e5)-[:FRIEND_OF]->(e13),(e5)-[:FRIEND_OF]->(e3),
+(e5)-[:FRIEND_OF]->(e14),(e5)-[:FRIEND_OF]->(e1),
+(e5)-[:FRIEND_OF]->(e8),(e5)-[:FRIEND_OF]->(e12),
+(e5)-[:FRIEND_OF]->(e9),(e5)-[:FRIEND_OF]->(e10),
+(e6)-[:FRIEND_OF]->(e14),(e6)-[:FRIEND_OF]->(e1),
+(e6)-[:FRIEND_OF]->(e8),(e6)-[:FRIEND_OF]->(e2),
+(e6)-[:FRIEND_OF]->(e9),(e6)-[:FRIEND_OF]->(e3),
+(e7)-[:FRIEND_OF]->(e14),(e7)-[:FRIEND_OF]->(e1),
+(e7)-[:FRIEND_OF]->(e15),(e7)-[:FRIEND_OF]->(e6),
+(e7)-[:FRIEND_OF]->(e16),(e7)-[:FRIEND_OF]->(e4),
+(e8)-[:FRIEND_OF]->(e13),(e8)-[:FRIEND_OF]->(e14),
+(e8)-[:FRIEND_OF]->(e12),(e8)-[:FRIEND_OF]->(e5),
+(e8)-[:FRIEND_OF]->(e11),(e8)-[:FRIEND_OF]->(e4),
+(e9)-[:FRIEND_OF]->(e8),(e9)-[:FRIEND_OF]->(e14),
+(e9)-[:FRIEND_OF]->(e7),(e9)-[:FRIEND_OF]->(e5),
+(e9)-[:FRIEND_OF]->(e6),(e9)-[:FRIEND_OF]->(e12),
+(e10)-[:FRIEND_OF]->(e3),(e10)-[:FRIEND_OF]->(e5),
+(e10)-[:FRIEND_OF]->(e2),(e10)-[:FRIEND_OF]->(e15),
+(e11)-[:FRIEND_OF]->(e3),(e11)-[:FRIEND_OF]->(e6),
+(e11)-[:FRIEND_OF]->(e4),(e11)-[:FRIEND_OF]->(e8),
+(e12)-[:FRIEND_OF]->(e4),(e12)-[:FRIEND_OF]->(e1),
+(e13)-[:FRIEND_OF]->(e8),(e13)-[:FRIEND_OF]->(e14),
+(e13)-[:FRIEND_OF]->(e7),(e13)-[:FRIEND_OF]->(e15),
+(e13)-[:FRIEND_OF]->(e16),(e13)-[:FRIEND_OF]->(e12),
+(e14)-[:FRIEND_OF]->(e7),(e14)-[:FRIEND_OF]->(e3),
+(e14)-[:FRIEND_OF]->(e8),(e14)-[:FRIEND_OF]->(e4),
+(e15)-[:FRIEND_OF]->(e1),(e15)-[:FRIEND_OF]->(e13),
+(e15)-[:FRIEND_OF]->(e3),(e15)-[:FRIEND_OF]->(e4),
+(e16)-[:FRIEND_OF]->(e9),(e16)-[:FRIEND_OF]->(e13),
+(e16)-[:FRIEND_OF]->(e10),(e16)-[:FRIEND_OF]->(e3);
+
+
+---- Create Tom and make him a friend of Mary
+CREATE (m1:Person { name: "Tom", from: "Spain", age: 28, like: "Football" });
+MATCH (e:Person {name:"Tom"}), (f:Person {name:"Mary"})
+CREATE (e)-[:FRIEND_OF]->(f);
+
+match (p:Person {name:"Tom"})-[:FRIEND_OF]-> (others)
+return p, others;
+
+---- delete all
+MATCH (p:Person) DETACH
+DELETE p
+
+---- Create bill and make him a friend of mary and Denis
+Create (m2:Person { name: "Bill", country: "Ireland", age: 23 });
+MATCH
+  (e:Person {name:"Bill"}),
+  (f:Person {name:"Mary"}),
+  (g: Person {name:"Denis"})
+CREATE
+ (e)-[:FRIEND_OF]->(f),
+ (e)-[:FRIEND_OF]->(g);
+
+ match (p:Person {name:"Bill"})-[:FRIEND_OF]-> (others)
+ return p, others;
+
+---- Show the age of Denis and his friends
+MATCH(f:Person {name:"Denis"})-[:FRIEND_OF]->(others)
+return f.age, others.age;
+
+---- Show all the person from Scotland
+MATCH(f:Person {country:"Scotland"})
+return f;
+
+---- Show all the person with age less or equal than 20 from Ireland
+MATCH(f:Person {country:"Ireland"}) where f.age <=20
+return f;
+
+---- Show all the person with age less or equal 30 playing football
+MATCH(f:Person {sport:"Football"}) where f.age <=30
+return f;
+
+---- Count the person by country
+MATCH (e:Person )
+RETURN e.country, COUNT(e.country) as number_by_country
+
+---- Show the average age of the person group by sport
+MATCH (e:Person )
+RETURN e.sport, avg(e.age) as average_age
+
+---- Show all the direct friends of Mary
+MATCH(f:Person {name:"Mary"})-[:FRIEND_OF]->(p:Person)
+return f, p;
+
+---- Show all the friends of Paul with a maximum distance of 5 steps
+MATCH(f:Person {name:"Paul"}) -[:FRIEND_OF*1..5]->(p:Person)
+return p;
+
+---- Count all the friends of Paul with maximum distance 5 steps by nationality
+MATCH (e:Person {name:"Paul"})-[:FRIEND_OF*1..5]->(e2:Person)
+RETURN e2.country, COUNT(e2.country) as numfriends
+
+---- Show the path(s) between Paul and Lisa. For each path show the length. How
+---- many paths are there??????????
+MATCH
+  path = (e:Person {name:"Paul"})-[:FRIEND_OF*..3]->(m:Person {name:"Lisa"})
+RETURN nodes(path), length(path) as path_length, count(path) as count
+order by path_length
+
+---- Show the shortest path between Paul and Lisa.
+MATCH
+path = shortestPath(
+ (e:Person {name:"Paul"})-[:FRIEND_OF*..3]-(m:Person {name:"Lisa"})
+) RETURN path
+
+---- Show (if exists) a connection between Mary and all her friends, where the
+---- path can only contain persons that play football??????
+MATCH
+path = (e:Person {name:"Mary", sport:"Football"})-[:FRIEND_OF*..5]->
+      (friends:Person {sport:"Football"})
+RETURN path
+
+MATCH
+path = (e:Person {name:"Mary"})-[:FRIEND_OF*..5]->
+      (friends:Person {sport:"Football"})
+RETURN path
+
+---- create a graph showing connections between airports.
+CREATE
+(a1:Airport { city: "dublin", country: "ireland", code: "dub" }),
+(a2:Airport { city: "cork", country: "ireland", code: "ork" }),
+(a3:Airport { city: "london", country: "uk", code: "lhr" }),
+(a4:Airport { city: "rome", country: "italy", code: "fco" }),
+(a5:Airport { city: "moscow", country: "russia", code: "dme" }),
+(a6:Airport { city: "hongkong", country: "china", code: "hkg" }),
+(a7:Airport { city: "amsterdam", country: "holland", code: "ams" }),
+(a8:Airport { city: "berlin", country: "germany", code: "txl" }),
+(a9:Airport { city: "paris", country: "france", code: "cdg" }),
+(a10:Airport { city: "newyork", country: "usa", code: "jfk" }),
+(a11:Airport { city: "chicago", country: "usa", code: "ord" }),
+(a12:Airport { city: "sao paulo", country: "brazil", code: "gru" }),
+(a13:Airport { city: "rio", country: "brazil", code: "gig" }),
+(a3)-[:connected_to { node_from:"london", node_to:"dublin", time: 45, price: 150 }]->(a1),
+(a4)-[:connected_to { node_from:"rome", node_to:"london", time: 150, price: 400 }]->(a3),
+(a4)-[:connected_to { node_from:"rome", node_to:"paris", time: 120, price: 500 }]->(a9),
+(a9)-[:connected_to { node_from:"paris", node_to:"dublin", time: 60, price: 200 }]->(a1),
+(a8)-[:connected_to { node_from:"berlin", node_to:"moscow", time: 240, price: 900 }]->(a5),
+(a9)-[:connected_to { node_from:"paris", node_to:"amsterdam", time: 30, price: 100 }]->(a7),
+(a8)-[:connected_to { node_from:"berlin", node_to:"dublin", time: 120, price: 900 }]->(a1),
+(a3)-[:connected_to { node_from:"london", node_to:"newyork", time: 700, price: 1100 }]->(a10),
+(a1)-[:connected_to { node_from:"dublin", node_to:"newyork", time: 360, price: 800 }]->(a10),
+(a1)-[:connected_to { node_from:"dublin", node_to:"cork", time: 50, price: 50 }]->(a2),
+(a1)-[:connected_to { node_from:"dublin", node_to:"rome", time: 150, price: 70 }]->(a4),
+(a1)-[:connected_to { node_from:"dublin", node_to:"chicago", time: 480, price: 890 }]->(a11),
+(a7)-[:connected_to { node_from:"amsterdam", node_to:"hongkong", time: 660, price: 750 }]->(a6),
+(a3)-[:connected_to { node_from:"london", node_to:"hongkong", time: 700, price: 1000 }]->(a6),
+(a1)-[:connected_to { node_from:"dublin", node_to:"amsterdam", time: 90, price: 60 }]->(a7),
+(a5)-[:connected_to { node_from:"moscow", node_to:"newyork", time: 720, price: 1000 }]->(a10),
+(a5)-[:connected_to { node_from:"moscow", node_to:"hongkong", time: 420, price: 500 }]->(a6),
+(a10)-[:connected_to { node_from:"newyork", node_to:"chicago", time: 240, price: 430 }]->(a11),
+(a1)-[:connected_to { node_from:"dublin", node_to:"sao paulo", time: 900, price: 800 }]->(a12),
+(a12)-[:connected_to { node_from:"sao paulo", node_to:"newyork", time: 840, price: 650 }]->(a10),
+(a13)-[:connected_to { node_from:"rio", node_to:"berlin", time: 1200, price: 1100 }]->(a8)
+
+---- Find the total time from Moscow to Rio. Show also the path
+---- (airport connections)
+MATCH
+  path = (a:Airport {city:"moscow"})-[:connected_to*..5]- (b:Airport {city:"rio"})
+RETURN nodes(path), REDUCE (t = 0, n IN relationships(path) | t + n.time) as time
+
+---- Show all the flights from Dublin to any destination and sort them by price
+---- (from the most expensive)
+MATCH
+  path = (a:Airport {city:"dublin"})-[:connected_to*..5]- (b:Airport)
+RETURN nodes(path), REDUCE (p = 0, n IN relationships(path) | p + n.price) as total_price
+order by total_price desc
+
+---- Show what can be reached from Chicago in one or two steps
+---- (= direct flight or 1 change only)
+MATCH
+  path = (a:Airport {city:"chicago"})-[:connected_to*..2]- (b:Airport)
+RETURN nodes(path)
+
+---- Show what can be reached from London in less than 240 minutes (4 hours)
+MATCH
+  path = (a:Airport {city:"london"})-[:connected_to*..5]- (b:Airport)
+with path where REDUCE (time = 0, n IN relationships(path) | time + n.time) <240
+RETURN nodes(path), REDUCE (time = 0, n IN relationships(path) | time + n.time) as total_time

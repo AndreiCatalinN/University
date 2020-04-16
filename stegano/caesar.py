@@ -4,7 +4,7 @@ s = 'NBY KOCWE VLIQH ZIR DOGJM IPYL NBY FUTS XIA IZ WUYMUL UHX SIOL OHCKOY MIFON
 def decrypt():
     for i in range(1,len(s)):
         print('Shift ', i)
-        alphabet[i]
+        alphabet[- i ]
 
 
 
